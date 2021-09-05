@@ -1,7 +1,7 @@
-import React from 'react';
-import { Card, CardImg, CardText, CardBody, Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import React from "react";
+import { Card, CardImg, CardTitle, CardText, CardBody, Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import { Link } from 'react-router-dom';
-
+    
     function RenderCampsite({campsite}) {
         return (
             <div className="col-md-5 m-1">
@@ -13,7 +13,7 @@ import { Link } from 'react-router-dom';
                     </CardBody>
                 </Card>
             </div>
-        );
+            );
     }
 
     function RenderComments({comments}) {
@@ -21,18 +21,26 @@ import { Link } from 'react-router-dom';
             return (
                 <div className="col-md-5 m-1">
                     <h4>Comments</h4>
-                    {comments.map(comment => <div key={comment.id}><p>{comment.text}<br/>--{comment.author}, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}</p></div>)}
+                    { comments.map(comment => {
+                        return (
+                            <div key={ comment.id }>
+                                <p>
+                                    { comment.text }
+                                    <br />
+                                    --{ comment.author }, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}
+                                </p>
+                            </div>
+                        );
+                    })}
                 </div>
             );
         }
         return (
-            <div></div>
-        );
+            <div />
+        )
     }
 
-    
-
-    function CampsiteInfo(props) {
+    function CampsiteInfo (props) {
         if (props.campsite) {
             return (
                 <div className="container">
@@ -45,13 +53,18 @@ import { Link } from 'react-router-dom';
                         <h2>{props.campsite.name}</h2>
                         <hr />
                     </div>
-                        <RenderCampsite campsite={props.campsite} />
+                    </div>
+                    <div className="row">
+                        <RenderCampsite campsite={ props.campsite } />
                         <RenderComments comments={props.comments} />
                     </div>
                 </div>
             );
+        } else {
+            return (
+                <div />
+            );
         }
-        return <div />;
+    
     }
-
 export default CampsiteInfo;
