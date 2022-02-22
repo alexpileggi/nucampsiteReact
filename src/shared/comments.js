@@ -12,7 +12,7 @@ export const COMMENTS =
         id: 1,
         campsiteId: 0,
         rating: 4, 
-        text: "The campground was beautiful, but the bugs could bite sometimes.",
+        text: "The campground was breathtaking, but the bugs could bite sometimes.",
         author: "Brennen Ech",
         date: "2017-06-17T03:33Z"
     },
